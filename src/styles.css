@@ -1,0 +1,175 @@
+@font-face {
+  font-family: "Hundar";
+  src: url("/fonts/Hundar.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+
+  --bg: light-dark(#fbfaf7, #121210);
+  --fg: light-dark(#201f1c, #e9e7e1);
+  --body: light-dark(#45443f, #c2c0b9);
+  --muted: light-dark(#7b796f, #939087);
+  --faint: light-dark(#a9a69c, #5f5d57);
+  --selection: light-dark(#ece9df, #2a2924);
+
+  --serif: "Hundar", ui-serif, "Iowan Old Style", "Palatino Linotype",
+    Palatino, "Songti SC", "Noto Serif CJK SC", Georgia, serif;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--selection);
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 1px solid var(--fg);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.page {
+  width: 100%;
+  max-width: 40rem;
+  padding: clamp(4rem, 14vh, 8rem) 1.5rem;
+  text-align: center;
+}
+
+/* ---------- Intro ---------- */
+
+h1 {
+  margin: 0 0 1.5rem;
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 9vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.lede {
+  max-width: 22rem;
+  margin: 0 auto 2.25rem;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.85;
+  text-wrap: balance;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem clamp(0.75rem, 4vw, 1.75rem);
+  font-size: 0.9375rem;
+}
+
+.links a {
+  padding: 0.4rem 0.5rem;
+  color: var(--body);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 0.25s ease, text-decoration-color 0.25s ease;
+}
+
+.links a:hover {
+  color: var(--fg);
+  text-decoration-color: var(--faint);
+}
+
+/* ---------- Theme toggle ---------- */
+
+.theme-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--faint);
+  opacity: 0.65;
+  cursor: pointer;
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--fg);
+  opacity: 1;
+}
+
+.theme-toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---------- Entrance ---------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.intro {
+  animation: rise 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
